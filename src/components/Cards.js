@@ -40,7 +40,15 @@ let Cards = (props)=>(
                 <div className="container-fluid p-0">
                     <div className="row">
                         <div className="col-12 font-weight-bold">
-                            Pre-Registration
+                            {new Date(props.course.start_date) > new Date()?
+                                "Pre-registration"
+                            :
+                            new Date(props.course.end_date)  < new Date()?
+                                "Completed"
+                            :
+                            "Ongoing"
+                            }
+                            
                         </div>
                     </div>
                     <div className="row">

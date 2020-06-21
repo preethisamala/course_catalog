@@ -14,7 +14,7 @@ let Sidebar = (props) => (
             <div className="col-12">
                 <div className="inputBorder">
                     <img className="mr-2" src={Search} alt="Search" height="15px" />
-                    <input type="text" className="customInput" placeholder="Filter Courses"  />
+                    <input type="text" className="customInput" placeholder="Filter Courses" value={props.search} onChange={(event)=>props.setSearch(event.target.value)}  />
                 </div>
             </div>
         </div>
@@ -24,14 +24,18 @@ let Sidebar = (props) => (
             </div>
         </div>
         <div className="row">
-            <div className="col-12 mt-2 d-flex align-items-center" style={{cursor:'pointer'}}>
-              <img className="mr-2" src={Radio} alt="Radio" height="15px" />  All
+            <div className="col-12 mt-2 d-flex align-items-center" style={{cursor:'pointer'}} onClick={()=>props.setRadio("All")}>
+                {props.radio === "All"?
+                <img className="mr-2" src={RadioActive} alt="RadioActive" height="15px" />
+                :<img className="mr-2" src={Radio} alt="Radio" height="15px" />}  All               
             </div>
         </div>
         {props.categories.length > 0 && props.categories.map((category, index)=>(
             <div className="row" key={index}>
-                <div className="col-12 mt-2 d-flex align-items-center" style={{cursor:'pointer'}}>
-                    <img className="mr-2" src={Radio} alt="Radio" height="15px" />  {category}
+                <div className="col-12 mt-2 d-flex align-items-center" style={{cursor:'pointer'}} onClick={()=>props.setRadio(category)}>
+                    {props.radio === category?
+                    <img className="mr-2" src={RadioActive} alt="RadioActive" height="15px" />
+                    :<img className="mr-2" src={Radio} alt="Radio" height="15px" />}  {category}
                 </div>
             </div>
         ))}

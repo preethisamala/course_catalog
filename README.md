@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). The production build version is present in the gh-pages branch and can be accessed on https://preethisamala.github.io/course_catalog/
 
 ## Available Scripts
 

@@ -1,24 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import Sidebar from './components/Sidebar';
 import './App.css';
+import Courses from './components/Courses';
 
 function App() {
+  let [categories, setCategories] = useState([]);
+  let [courses, setCourses] = useState([]);
+  let fetchDetails = () => {
+    fetch('https://cors-anywhere.herokuapp.com/'+'https://frontend-hiring.appspot.com/all_categories?secret=HelloMars')
+    .then(response=>response.json())
+    .then(response=>{
+      setCategories(JSON.parse(response.payload));
+    })
+    .catch(e=>console.log(e));
+    fetch('https://cors-anywhere.herokuapp.com/'+'https://frontend-hiring.appspot.com/all_courses?secret=HelloMars')
+    .then(response=>response.json())
+    .then(response=>{
+      setCourses(JSON.parse(response.payload));
+    })
+    .catch(e=>console.log(e));
+  };
+  useEffect(()=>fetchDetails(), []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-2">
+          <Sidebar categories={categories} />
+        </div>
+        <div className="col-10">
+          <Courses courses={courses}/>
+        </div>
+      </div>
     </div>
   );
 }

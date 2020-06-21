@@ -14,3 +14,18 @@
   font-weight: bold;
   font-size: small;
 }
+.customInput{
+  background: transparent;
+  border: 0px;
+  width: 120px;
+}
+.customInput:focus{
+  border: 0px;
+  outline: none;
+}
+.inputBorder{
+  border-bottom: 2px solid #808080;
+}
+.inputBorder:focus-within{
+  border-bottom: 2px solid blue;
+}
